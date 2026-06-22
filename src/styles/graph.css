@@ -1,0 +1,308 @@
+/* Hero graph background */
+
+.hero-banner::before {
+  content: "";
+  position: absolute;
+  top: -18%;
+  bottom: -18%;
+  left: 0;
+  z-index: -3;
+  width: min(40vw, 38rem);
+  opacity: 0.34;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 10% 18%, var(--ramen-red) 0 0.24rem, transparent 0.29rem),
+    radial-gradient(circle at 27% 11%, rgba(164, 31, 30, 0.9) 0 0.18rem, transparent 0.23rem),
+    radial-gradient(circle at 43% 24%, rgba(164, 31, 30, 0.82) 0 0.28rem, transparent 0.33rem),
+    radial-gradient(circle at 18% 38%, rgba(164, 31, 30, 0.72) 0 0.2rem, transparent 0.25rem),
+    radial-gradient(circle at 52% 47%, rgba(164, 31, 30, 0.78) 0 0.23rem, transparent 0.28rem),
+    radial-gradient(circle at 31% 62%, rgba(164, 31, 30, 0.86) 0 0.26rem, transparent 0.31rem),
+    radial-gradient(circle at 8% 74%, rgba(164, 31, 30, 0.68) 0 0.18rem, transparent 0.23rem),
+    radial-gradient(circle at 48% 84%, rgba(164, 31, 30, 0.76) 0 0.22rem, transparent 0.27rem),
+    radial-gradient(circle at 63% 68%, rgba(164, 31, 30, 0.62) 0 0.16rem, transparent 0.21rem),
+    linear-gradient(28deg, transparent 0 18%, rgba(24, 20, 19, 0.2) 18.15% 18.65%, transparent 18.8%),
+    linear-gradient(-36deg, transparent 0 27%, rgba(24, 20, 19, 0.18) 27.15% 27.65%, transparent 27.8%),
+    linear-gradient(66deg, transparent 0 39%, rgba(24, 20, 19, 0.2) 39.15% 39.65%, transparent 39.8%),
+    linear-gradient(-18deg, transparent 0 51%, rgba(24, 20, 19, 0.16) 51.15% 51.65%, transparent 51.8%),
+    linear-gradient(112deg, transparent 0 61%, rgba(24, 20, 19, 0.14) 61.15% 61.65%, transparent 61.8%),
+    linear-gradient(8deg, transparent 0 72%, rgba(24, 20, 19, 0.17) 72.15% 72.65%, transparent 72.8%);
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    130% 130%,
+    140% 140%,
+    150% 150%,
+    135% 135%,
+    145% 145%,
+    155% 155%;
+  background-position:
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+  mask-image: linear-gradient(to right, black 0%, black 42%, transparent 100%);
+  animation: graph-field-left 34s ease-in-out infinite alternate;
+}
+
+.hero-banner::after {
+  content: "";
+  position: absolute;
+  top: -18%;
+  right: 0;
+  bottom: -18%;
+  z-index: -3;
+  width: min(40vw, 38rem);
+  opacity: 0.34;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 90% 16%, var(--ramen-red) 0 0.24rem, transparent 0.29rem),
+    radial-gradient(circle at 72% 9%, rgba(164, 31, 30, 0.9) 0 0.18rem, transparent 0.23rem),
+    radial-gradient(circle at 58% 27%, rgba(164, 31, 30, 0.82) 0 0.28rem, transparent 0.33rem),
+    radial-gradient(circle at 82% 41%, rgba(164, 31, 30, 0.72) 0 0.2rem, transparent 0.25rem),
+    radial-gradient(circle at 47% 50%, rgba(164, 31, 30, 0.78) 0 0.23rem, transparent 0.28rem),
+    radial-gradient(circle at 68% 64%, rgba(164, 31, 30, 0.86) 0 0.26rem, transparent 0.31rem),
+    radial-gradient(circle at 92% 76%, rgba(164, 31, 30, 0.68) 0 0.18rem, transparent 0.23rem),
+    radial-gradient(circle at 52% 86%, rgba(164, 31, 30, 0.76) 0 0.22rem, transparent 0.27rem),
+    radial-gradient(circle at 37% 70%, rgba(164, 31, 30, 0.62) 0 0.16rem, transparent 0.21rem),
+    linear-gradient(-28deg, transparent 0 18%, rgba(24, 20, 19, 0.2) 18.15% 18.65%, transparent 18.8%),
+    linear-gradient(36deg, transparent 0 27%, rgba(24, 20, 19, 0.18) 27.15% 27.65%, transparent 27.8%),
+    linear-gradient(-66deg, transparent 0 39%, rgba(24, 20, 19, 0.2) 39.15% 39.65%, transparent 39.8%),
+    linear-gradient(18deg, transparent 0 51%, rgba(24, 20, 19, 0.16) 51.15% 51.65%, transparent 51.8%),
+    linear-gradient(-112deg, transparent 0 61%, rgba(24, 20, 19, 0.14) 61.15% 61.65%, transparent 61.8%),
+    linear-gradient(-8deg, transparent 0 72%, rgba(24, 20, 19, 0.17) 72.15% 72.65%, transparent 72.8%);
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    130% 130%,
+    140% 140%,
+    150% 150%,
+    135% 135%,
+    145% 145%,
+    155% 155%;
+  background-position:
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+  mask-image: linear-gradient(to left, black 0%, black 42%, transparent 100%);
+  animation: graph-field-right 34s ease-in-out infinite alternate;
+}
+
+.hero-banner .container::before,
+.hero-banner .container::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 15rem;
+  height: 12rem;
+  opacity: 0.36;
+  pointer-events: none;
+  background:
+    linear-gradient(24deg, transparent 0 31%, rgba(24, 20, 19, 0.24) 31.2% 31.8%, transparent 32%),
+    linear-gradient(-42deg, transparent 0 44%, rgba(24, 20, 19, 0.2) 44.2% 44.8%, transparent 45%),
+    linear-gradient(78deg, transparent 0 58%, rgba(24, 20, 19, 0.18) 58.2% 58.8%, transparent 59%),
+    linear-gradient(-12deg, transparent 0 67%, rgba(24, 20, 19, 0.16) 67.2% 67.8%, transparent 68%),
+    radial-gradient(circle at 16% 36%, var(--ramen-red) 0 0.24rem, transparent 0.29rem),
+    radial-gradient(circle at 36% 18%, rgba(164, 31, 30, 0.9) 0 0.18rem, transparent 0.23rem),
+    radial-gradient(circle at 62% 42%, rgba(164, 31, 30, 0.78) 0 0.26rem, transparent 0.31rem),
+    radial-gradient(circle at 32% 72%, rgba(164, 31, 30, 0.7) 0 0.2rem, transparent 0.25rem),
+    radial-gradient(circle at 82% 76%, rgba(164, 31, 30, 0.82) 0 0.22rem, transparent 0.27rem);
+}
+
+.hero-banner .container::before {
+  top: -3rem;
+  left: -12rem;
+  transform: rotate(-10deg);
+  animation: graph-cluster-left 7s ease-in-out infinite alternate;
+}
+
+.hero-banner .container::after {
+  right: -12rem;
+  bottom: -3.5rem;
+  transform: rotate(10deg) scaleX(-1);
+  animation: graph-cluster-right 8s ease-in-out infinite alternate;
+}
+
+@keyframes graph-field-left {
+  from {
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+  }
+
+  to {
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      -130% 0,
+      -140% 0,
+      -150% 0,
+      -135% 0,
+      -145% 0,
+      -155% 0;
+  }
+}
+
+@keyframes graph-field-right {
+  from {
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+  }
+
+  to {
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      130% 0,
+      140% 0,
+      150% 0,
+      135% 0,
+      145% 0,
+      155% 0;
+  }
+}
+
+@keyframes graph-cluster-left {
+  from {
+    transform: translate3d(0, 0, 0) rotate(-10deg);
+    opacity: 0.24;
+  }
+
+  to {
+    transform: translate3d(0.75rem, 0.45rem, 0) rotate(-6deg);
+    opacity: 0.42;
+  }
+}
+
+@keyframes graph-cluster-right {
+  from {
+    transform: translate3d(0, 0, 0) rotate(10deg) scaleX(-1);
+    opacity: 0.24;
+  }
+
+  to {
+    transform: translate3d(-0.75rem, -0.45rem, 0) rotate(6deg) scaleX(-1);
+    opacity: 0.42;
+  }
+}
+
+@media (max-width: 996px) {
+  .hero-banner::before,
+  .hero-banner::after {
+    width: 42vw;
+    opacity: 0.22;
+  }
+
+  .hero-banner .container::before,
+  .hero-banner .container::after {
+    width: 10rem;
+    height: 8rem;
+    opacity: 0.22;
+  }
+
+  .hero-banner .container::before {
+    left: -7rem;
+  }
+
+  .hero-banner .container::after {
+    right: -7rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-banner::before,
+  .hero-banner::after {
+    width: 34vw;
+    opacity: 0.14;
+  }
+
+  .hero-banner .container::before,
+  .hero-banner .container::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-banner::before,
+  .hero-banner::after {
+    width: 30vw;
+    opacity: 0.1;
+  }
+}
