@@ -1,10 +1,10 @@
 # RAMEN SCHEMA
 
-Documentation website for **RAMEN** — the *Reusable Abstraction Model for Editorial Needs*.
+Documentation website for **RAMEN** — the _Reusable Abstraction Model for Editorial Needs_.
 
 ## Overview
 
-RAMEN SCHEMA documents the core concepts of RAMEN and explains how they can be used to model editorial data in digital scholarly editing.
+RAMEN SCHEMA documents the core concepts of RAMEN and explains how they can be used to model editorial data in digital editions and scholarly editing.
 
 RAMEN provides a conceptual structure for describing content, annotations, entities, collections, and their relations. The documentation is intended for researchers, editors, developers, and Digital Humanities projects that work with structured editorial data.
 
@@ -119,20 +119,15 @@ build/
 └── README.md
 ```
 
-## Contributing
-
-Contributions are welcome once the documentation structure has stabilised.
-
-For now, please open an issue or pull request with suggested changes.
-
 ## License
 
-The documentation content in this repository is licensed under the
+Documentation content, website text, diagrams, and conceptual explanations in this repository are licensed under the
 [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 
-You are free to share and adapt the material, provided that appropriate credit is given.
+Machine-readable schema files, source code, configuration files, scripts, and build-related project files are licensed under the
+[Apache License 2.0](./LICENSE).
 
-Code snippets, configuration files, and build-related project files are included for documentation purposes unless stated otherwise.
+The official RAMEN specification is defined by releases published by the RAMEN project contributors. Forks and adaptations are welcome, but should identify themselves as derived versions unless accepted into an official release.
 
 ## Maintainers / Contact
 
@@ -142,5 +137,3 @@ RAMEN SCHEMA is maintained by the RAMEN project contributors.
 - Maximilian Michel — <[maximilian.michel@adwmainz.de](mailto:maximilian.michel@adwmainz.de)>
 - Vincent Neeb — <[vincent.neeb@mni.thm.de](mailto:vincent.neeb@mni.thm.de)>
 - Andreas Kuczera — <[andreas.kuczera@mni.thm.de](mailto:andreas.kuczera@mni.thm.de)>
-
-
