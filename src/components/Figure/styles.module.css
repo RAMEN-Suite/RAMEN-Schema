@@ -1,0 +1,19 @@
+.figure {
+  margin: 2rem auto;
+  text-align: center;
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 2rem);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.caption {
+  margin-top: 0.75rem;
+  color: var(--ramen-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}

@@ -13,6 +13,8 @@
     "build": "docusaurus build",
     "serve": "docusaurus serve",
     "typecheck": "tsc",
+    "format": "prettier --check src",
+    "format:fix": "prettier --write src",
     "deploy:pages": "npm run build"
   },
   "dependencies": {
@@ -30,6 +32,7 @@
     "@docusaurus/tsconfig": "3.10.1",
     "@docusaurus/types": "3.10.1",
     "@types/react": "^19.0.0",
+    "prettier": "^3.8.4",
     "typescript": "~6.0.2"
   },
   "browserslist": {

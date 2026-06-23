@@ -1,7 +1,29 @@
-import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 
 const sidebars: SidebarsConfig = {
-  ramenSidebar: ['intro'],
+  ramenSidebar: [
+    {
+      type: "category",
+      label: "Concepts",
+      items: ["concepts/overview", "concepts/context", "concepts/content", "concepts/knowledge"],
+    },
+    {
+      type: "category",
+      label: "Specification",
+      items: ["specification/overview"],
+    },
+    {
+      type: "category",
+      label: "Tools",
+      link: {
+        type: "generated-index",
+        slug: "/tools",
+      },
+      items: ["tools/nori", "tools/cami", "tools/awen", "tools/ora"],
+    },
+    "examples",
+    "publications",
+  ],
 };
 
 export default sidebars;

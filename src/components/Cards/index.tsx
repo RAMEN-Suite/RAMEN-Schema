@@ -1,7 +1,7 @@
-import type {ReactElement, ReactNode} from 'react';
-import Heading from '@theme/Heading';
-import Link from '@docusaurus/Link';
-import styles from './styles.module.css';
+import type { ReactElement, ReactNode } from "react";
+import Heading from "@theme/Heading";
+import Link from "@docusaurus/Link";
+import styles from "./styles.module.css";
 
 type CardItem = {
   title: string;
@@ -12,26 +12,26 @@ type CardItem = {
 
 const CardList: CardItem[] = [
   {
-    title: 'Modelling your Data',
-    image: '/images/card_nori.png',
-    alt: 'Modelling with NORI',
-    to: '/concepts',
+    title: "Modelling your Data",
+    image: "/images/cards/card_nori.png",
+    alt: "Modelling with NORI",
+    to: "/concepts",
   },
   {
-    title: 'Capturing and Linking Content',
-    image: '/images/card_cami.png',
-    alt: 'Capturing with CAMI and AWEN',
-    to: '/concepts',
+    title: "Capturing and Linking Content",
+    image: "/images/cards/card_cami.png",
+    alt: "Capturing with CAMI and AWEN",
+    to: "/concepts",
   },
   {
-    title: 'Publishing Digital Editions',
-    image: '/images/card_ora.png',
-    alt: 'Publishing with ORA',
-    to: '/concepts',
+    title: "Publishing Digital Editions",
+    image: "/images/cards/card_ora.png",
+    alt: "Publishing with ORA",
+    to: "/concepts",
   },
 ];
 
-function Card({title, image, alt, to}: CardItem): ReactNode {
+function Card({ title, image, alt, to }: CardItem): ReactNode {
   return (
     <Link className={styles.card} to={to}>
       <div className={styles.imageWrap}>
@@ -50,9 +50,11 @@ export default function Cards(): ReactNode {
     <section className={styles.cards}>
       <div className="container">
         <div className={styles.grid}>
-          {CardList.map((card: CardItem): ReactElement => (
-            <Card key={card.title} {...card} />
-          ))}
+          {CardList.map(
+            (card: CardItem): ReactElement => (
+              <Card key={card.title} {...card} />
+            ),
+          )}
         </div>
       </div>
     </section>
