@@ -8,7 +8,7 @@ import Figure, { FigRef } from "@site/src/components/Figure";
 
 # RAMEN – not just a noodle soup?
 
-The _Reusable Abstraction Model for Editorial Needs_ (RAMEN) is a conceptual model for **creating, connecting, and publishing editorial data**. It describes how source materials, annotations, entities, collections, and contextual structures can be organised as parts of a [digital edition](https://de.wikipedia.org/wiki/Digitale_Edition) – a structured, critical representations of edited material ([cf. Sahle 2016](http://www.jstor.org/stable/j.ctt1fzhh6v.6)).
+The _Reusable Abstraction Model for Editorial Needs_ (RAMEN) is a conceptual model for **creating, connecting, and publishing editorial data**. It describes how source materials, annotations, entities, collections, and contextual structures can be organised as parts of a [digital edition](https://de.wikipedia.org/wiki/Digitale_Edition) – a structured, critical representation of edited material ([cf. Sahle 2016](http://www.jstor.org/stable/j.ctt1fzhh6v.6)).
 
 RAMEN **does not replace** established standards such as [TEI](https://tei-c.org/) or [IIIF](https://iiif.io/), nor broader models for cultural heritage knowledge, semantic relations, or research data. It provides an _editorial layer_ in which such standards and models can be **incorporated** where useful. RAMEN starts from the practical needs of editorial projects. It helps projects define _which materials they work with_, _how these materials can be structured_, _where annotations express scholarly interpretation_, _which entities are relevant_, and _how these elements are connected_. The aim is not to prescribe one fixed model for all editions, but to provide a **reusable abstraction** that serves as the **conceptual foundation** for [tools](/tools) that model, capture, link, and publish editorial data.
 
@@ -25,6 +25,8 @@ Digital scholarly projects often work with editorial data that is connected _in 
   width={560}
 />
 
+### Nodes and Relations
+
 RAMEN describes editorial data as a shared abstract model built around four basic node types: **Collection**, **Content**, **Annotation**, and **Entity**. These nodes represent different kinds of editorial objects, while three basic relation types describe how they are organised, annotated, and referenced: `PART_OF`, `HAS_ANNOTATION`, and `REFERS_TO`.
 
 - **Collection** nodes provide contextual structures. They describe how parts of an edition are situated, grouped, or organised within a project. `PART_OF` relations express such contextual structures between collections and content objects. Collections can also have annotations through `HAS_ANNOTATION` and can be referred to by annotations through `REFERS_TO`.
@@ -34,6 +36,8 @@ RAMEN describes editorial data as a shared abstract model built around four basi
 - **Annotation** nodes express editorial statements about other objects. They are attached to collections, content, entities, or other annotations through `HAS_ANNOTATION`; they can also refer to the objects they describe through `REFERS_TO`. This makes annotations a <u>central mechanism</u> across the model: they are not limited to one area, but can be used _wherever scholarly description, interpretation, classification, or commentary needs to be made explicit_.
 
 - **Entity** nodes represent identifiable objects of scholarly interest, such as persons, places, works, institutions, events, or concepts. Entities can have annotations through `HAS_ANNOTATION` and can be referred to by annotations through `REFERS_TO`. They provide the basis for modelling knowledge that extends beyond a single content object or collection.
+
+### Modelling Areas
 
 The three modelling areas shown in <FigRef id="fig:ramen">Figure 1</FigRef> describe different perspectives on these nodes and relations. **Context Modelling** focuses on collections and `PART_OF` structures that situate content within larger editorial contexts; **Content Modelling** focuses on content-bearing objects and their annotation; **Knowledge Modelling** focuses on entities, annotations, and `REFERS_TO` relations that make scholarly interpretation explicit. These areas overlap because content can be situated in collections, annotated, referred to, and connected to entities or other interpretive structures.
 
@@ -55,22 +59,28 @@ The formal rules for refinement, inheritance, constraints, and validation are de
   caption="Example of a project-specific refinement from the shared RAMEN model to a correspondence project model"
 />
 
+### Refinement through Inheritance
+
 The example in <FigRef id="fig:ramen-refinement">Figure 2</FigRef> shows how the shared RAMEN model can be specialised for a correspondence edition. General node types are refined as project-specific concepts: `Witness` and `Letter` are modelled as refinements of `Collection`, `Text` as a refinement of `Content`, and `Person` and `Place` as refinements of `Entity`. Each refined concept keeps its RAMEN base type while adding a more specific project-level meaning.
 
 **Not every node type has to be refined**. A project may specialise selected concepts, keep others unchanged, or restrict their possible relations. In the example, `Annotation` remains the general RAMEN type, while other node types are refined.
+
+### Restricted Relations and Attributes
 
 The relation types themselves cannot be refined. `PART_OF`, `HAS_ANNOTATION`, and `REFERS_TO` remain the fixed association types of RAMEN. A project model can, however, **restrict** where these relations may be used. If `Witness` is modelled as `PART_OF` `Letter`, this does not automatically allow `Witness` to be `PART_OF` any other `Collection` subtype. Missing relations cannot be used _unless they are explicitly defined in the project model_. Projects may add their own relation types, but RAMEN-based tools cannot handle them automatically unless they are explicitly implemented or mapped to RAMEN-compatible behaviour.
 
 Some of these concepts also apply to node attributes. A refined concept keeps the attributes of its RAMEN base type, but can add project-specific attributes where needed. The formal attribute model is described in the [Specification](/specification).
 
-:::tip
-Refinement should not make a project model **unnecessarily granular**. Internal textual structures, such as tables, table cells, or line groups, can often remain encoded and annotated within [TEI](https://tei-c.org/) instead of becoming separate `Collection` or `Content` nodes.
+### Modelling with NORI
 
-RAMEN allows such structures to be modelled explicitly, but they should become separate nodes only when they need to be addressed, linked, validated, or published as independent editorial objects.
-:::
+Project-specific RAMEN models can be created with [NORI](/tools/nori). The tool stores refined node types, allowed relations, attributes, and constraints in a JSON-based model specification that can be used by other RAMEN tools.
 
-## Modelling RAMEN Projects with NORI
+See [NORI](/tools/nori) for the modelling tool and the [Specification](/specification) for the technical model format.
 
-Project-specific RAMEN models can be created with [NORI](/tools/nori), the modelling tool of the RAMEN ecosystem. NORI stores refined node types, allowed relations, attributes, and constraints in a JSON-based model specification that can be used by other RAMEN tools.
+## Explore the Model Areas
 
-More details are provided in the [Tools](/tools) section and in the [Specification](/specification).
+The following pages introduce the three modelling areas in more detail:
+
+- [Bringing into Context](/concepts/context) explains how contextual structures situate and organise parts of an edition.
+- [Capturing Content](/concepts/content) explains how content-bearing objects are captured, annotated, linked, and prepared for publication.
+- [Modelling Knowledge](/concepts/knowledge) explains how annotations, entities, and references make scholarly interpretation explicit.
