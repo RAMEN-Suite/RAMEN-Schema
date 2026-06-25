@@ -8,9 +8,9 @@ import Figure from "@site/src/components/Figure";
 
 # Capturing Content
 
-Content in RAMEN describes material that is captured, referenced, edited, annotated, and published. A `Content` node may store text, reference an image, point to an external file, or provide another machine-readable representation used by a project.
+Content in RAMEN describes material that can be captured, referenced, edited, annotated, and published. A `Content` node may store text, reference an image or provide another machine-readable representation used by a project.
 
-Content nodes are _deliberately simple_. They do not define the whole editorial meaning of an object on their own. Their editorial role is created through contextual structures and annotations: a text may become the text of a witness through `PART_OF`, and it may receive interpretation, classification, or commentary through `HAS_ANNOTATION`.
+`Content` nodes are _deliberately simple_. They do not define the whole editorial meaning of an object on their own. Their editorial role is created through contextual structures and annotations: a text may become the text of a witness through `PART_OF`, and it may receive interpretation, classification, or commentary through `HAS_ANNOTATION`.
 
 :::note
 _Serialised material_ means material that is stored or referenced in a **concrete digital form**, such as plain text, a URL, an external file reference, or another representation that a project can process.
@@ -27,12 +27,12 @@ _Serialised material_ means material that is stored or referenced in a **concret
 
 ## Content Nodes
 
-`Content` nodes represent serialised or addressable material. A refined `Content` node may, for example, be called `Text` or `Image`, but RAMEN does not bind content to these labels. What matters is that the node remains recognisable as a `Content` node, so tools can rely on the RAMEN base type while projects can define more specific content-bearing roles.
+`Content` nodes represent serialised or addressable material. A refined `Content` node may, for example, be called `Text` or `Image`, but RAMEN does not bind specific media types to these labels. What matters is that the node remains recognisable as a `Content` node, so tools can rely on the RAMEN base type while projects can define more specific content-bearing roles.
 
 The attributes used to capture material depend on the content type and the used [tools](/tools). For textual content, a project model may define a `text` attribute. For image content, it may define a `url` attribute. Other media or data types may use different attributes.
 
 :::warning
-A project model _should_ define the expected attributes for its content types in advance. Different tools **may require different attributes** depending on the workflow; these requirements should therefore be specified before data capture begins.
+A project model _should_ define the expected attributes for its content types in advance. Different tools **may require different attributes** depending on the workflow; these requirements should therefore be specified **before data capture begins**.
 
 For textual content, a tool may expect a `text` attribute and use `startIndex` and `endIndex` for range-based annotations. For image content, a tool may expect a `url` attribute and use coordinates or [IIIF](https://iiif.io/)-compatible regions for image annotations.
 :::
@@ -41,10 +41,10 @@ For textual content, a tool may expect a `text` attribute and use `startIndex` a
 
 Content and annotations are **closely connected** in RAMEN. A `Content` node carries the material, while `Annotation` nodes add editorial information to it. This can include interpretation, structural markup, classification, or references to other elements.
 
-The relation between content and annotation is expressed through `HAS_ANNOTATION`. A content-bearing node can have one or more annotations. These annotations may describe the whole content or only a specific part of it, such as a text range or an image region.
+The relation between content and annotation is expressed through `HAS_ANNOTATION`. A content-bearing node may have zero or more annotations. They may describe the whole content or only a specific part of it, such as a text range or an image region.
 
 :::info
-RAMEN annotations provide a `type` attribute. For many cases, this is enough to distinguish annotation kinds without refining the `Annotation` node itself. For example, a [persName](https://www.tei-c.org/release/doc/tei-p5-doc/de/html/ref-persName.html) annotation can be represented as an `Annotation` with `type: "persName"` attached to a content-bearing node.
+RAMEN annotations provide a `type` attribute. For many cases, this is enough to distinguish annotation kinds without refining the `Annotation` node itself. For example, a TEI [persName](https://www.tei-c.org/release/doc/tei-p5-doc/de/html/ref-persName.html) annotation can be represented as an `Annotation` with `type: "persName"` attached to a content-bearing node.
 
 Refined annotation nodes are useful when an annotation kind needs additional attributes, constraints, or project-specific rules.
 :::
@@ -59,9 +59,9 @@ The following examples are **not intended as best practices** or required modell
 
 ### RAMEN-based Content Editor
 
-Content can be captured directly in a [RAMEN-based editor](/tools/cami). In this workflow, the editor is configured with a project-specific RAMEN model and offers the content and annotation types defined by that model. Editors can create or edit content, add annotations, and link annotations to other objects such as entities without working directly with the **underlying graph structure**.
+Content can be captured directly in a [RAMEN-based editor](/tools/cami). In this workflow, the editor is configured with a project-specific RAMEN model and offers the content and annotation types defined by that model. Editors can create or edit content, add annotations, and link annotations to other objects such as entities without working directly with the underlying graph structure.
 
-The editor may enforce the attributes required for the supported content type. For textual content, this may include a `text` attribute and range-based annotations with `startIndex` and `endIndex`. For image content, this may include a `url` attribute and region-based annotations using coordinates or [IIIF](https://iiif.io/)-compatible regions.
+The editor may enforce additional attributes required for the supported content type. For textual content, this may include a `text` attribute and range-based annotations with `startIndex` and `endIndex`. For image content, this may include a `url` attribute and region-based annotations using coordinates or [IIIF](https://iiif.io/)-compatible regions.
 
 See [CAMI](/tools/cami) for a RAMEN-based editor for creating, editing, annotating, and linking content.
 
