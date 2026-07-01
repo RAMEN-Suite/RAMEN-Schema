@@ -29,3 +29,8 @@ package-lock.json -merge
 pnpm-lock.yaml -merge
 yarn.lock -merge
 
+# Linguist specs
+*.md linguist-detectable=true
+*.mdx linguist-detectable=true
+*.css linguist-vendored
+
