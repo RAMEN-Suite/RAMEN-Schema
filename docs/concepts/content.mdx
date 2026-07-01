@@ -44,37 +44,125 @@ Content and annotations are **closely connected** in RAMEN. A `Content` node car
 The relation between content and annotation is expressed through `HAS_ANNOTATION`. A content-bearing node may have zero or more annotations. They may describe the whole content or only a specific part of it, such as a text range or an image region.
 
 :::info
-RAMEN annotations provide a `type` attribute. For many cases, this is enough to distinguish annotation kinds without refining the `Annotation` node itself. For example, a TEI [persName](https://www.tei-c.org/release/doc/tei-p5-doc/de/html/ref-persName.html) annotation can be represented as an `Annotation` with `type: "persName"` attached to a content-bearing node.
-
-Refined annotation nodes are useful when an annotation kind needs additional attributes, constraints, or project-specific rules.
+RAMEN annotations provide a `type` attribute that can be used to distinguish annotation kinds **without necessarily refining** the `Annotation` node itself. How far annotation types define additional properties, constraints, or editing behaviour **depends on the project model and tool support**.
 :::
 
 ## Examples of Capturing Content
 
-This section shows how `Content` nodes can provide the material basis for editorial work, while `Annotation` nodes add structure, classification, interpretation, or links to specific parts of that material.
+The following examples show how `Content` nodes can be refined, how material can be captured and annotated, and how existing encodings or more granular serialisations can be integrated into RAMEN.
 
 :::note
-The following examples are **not intended as best practices** or required modelling patterns. Project models may differ depending on material, research questions, workflows, requirements, and tool support.
+The examples below describe **methods to capture, import and annotate content**. They are **not intended as best practices**, but illustrate possible modelling and methodology choices that may differ between projects and tools.
 :::
 
-### RAMEN-based Content Editor
+### Capturing Different Content Types
 
-Content can be captured directly in a [RAMEN-based editor](/tools/cami). In this workflow, the editor is configured with a project-specific RAMEN model and offers the content and annotation types defined by that model. Editors can create or edit content, add annotations, and link annotations to other objects such as entities without working directly with the underlying graph structure.
+This section shows how different kinds of material can be captured in refined `Content` nodes.
 
-The editor may enforce additional attributes required for the supported content type. For textual content, this may include a `text` attribute and range-based annotations with `startIndex` and `endIndex`. For image content, this may include a `url` attribute and region-based annotations using coordinates or [IIIF](https://iiif.io/)-compatible regions.
+#### Capturing Plain Text
 
-See [CAMI](/tools/cami) for a RAMEN-based editor for creating, editing, annotating, and linking content.
+A project may capture textual material in a refined `Content` node such as `Text`. The text itself can be stored in a `text` attribute, while structural, interpretive, or classificatory information is represented separately as `Annotation` nodes.
 
-### Using TEI/XML and RAMEN
+These annotations can describe the whole content node or specific text ranges. For range-based annotations, attributes such as `startIndex` and `endIndex` can identify the relevant part of the text. This makes it possible to attach paragraphs, headings, quotations, names, corrections, comments, or other editorial information to the same textual content through `HAS_ANNOTATION`.
+
+<Figure
+  id="fig:content-plain-text"
+  number="2"
+  src="/images/concepts/content-plain-text.png"
+  alt="Plain text content with a range-based annotation"
+  caption="Plain text content with a range-based annotation"
+  width={720}
+/>
+
+#### Capturing Images
+
+A project may capture image-based material in a refined `Content` node such as `Image`. The image itself may be referenced through a `url` attribute or another project-defined attribute.
+
+Annotations can then describe the whole image or a specific region of it. Instead of `startIndex` and `endIndex`, image annotations may use coordinates, bounding boxes, polygons, or [IIIF](https://iiif.io/)-compatible regions, depending on the project model and tool support.
+
+As with text, the `Image` node carries or references the material, while `Annotation` nodes add structure, classification, interpretation, or links to other editorial objects.
+
+<Figure
+  id="fig:content-image"
+  number="3"
+  src="/images/concepts/content-image.png"
+  alt="Image content with a region-based annotation"
+  caption="Image content with a region-based annotation"
+  width={720}
+/>
+
+### Working with Content Annotations
+
+This section shows how annotations attached to content can be typed and linked to other editorial objects.
+
+#### Typing Content Annotations
+
+Annotations attached to content can often remain general `Annotation` nodes. Their specific meaning can be expressed through the `type` attribute. For example, a TEI [persName](https://www.tei-c.org/release/doc/tei-p5-doc/de/html/ref-persName.html) annotation can be represented as an `Annotation` with `type: "persName"` attached to a content-bearing node.
+
+<Figure
+  id="fig:content-typed-annotation"
+  number="4"
+  src="/images/concepts/content-typed-annotation.png"
+  alt="Content annotation typed with a type attribute"
+  caption="Content annotation typed with a type attribute"
+  width={800}
+/>
+
+Depending on the project model and tool support, annotation types may also define different expected properties, validation rules, or editing forms. A `persName` annotation may therefore require different information than a `commentary` annotation, even if both remain general `Annotation` nodes.
+
+:::tip
+Refined annotation nodes are useful when an annotation kind **should become a distinct project-specific concept** in the model. In many cases, however, `type`-based annotations are sufficient and keep the annotation model _simple_.
+:::
+
+#### Linking Content Annotations
+
+Annotations on content can also create connections to other editorial objects. A `Text` node may `HAS_ANNOTATION` an annotation with `type: "persName"`, and this annotation may `REFERS_TO` a `Person` entity.
+
+In this pattern, the content, the annotation, and the entity remain separate. The `Text` node carries the written form, the annotation marks and classifies the occurrence, and the `Person` entity represents the identified person. This allows the same content to remain readable as text while its editorial interpretation becomes explicit in the graph.
+
+<Figure
+  id="fig:content-refers-entity"
+  number="5"
+  src="/images/concepts/content-refers-entity.png"
+  alt="Content annotation referring to a Person entity"
+  caption="Content annotation referring to a Person entity"
+  width={560}
+/>
+
+### Serialising and Reusing Existing Content
+
+This section shows how existing encodings or more granular serialisations can be used together with RAMEN `Content` nodes.
+
+#### Using TEI/XML and RAMEN
 
 A project may capture textual content by transforming existing [TEI/XML](https://www.tei-c.org/) into a RAMEN-compatible graph structure. In this pattern, the plain text is stored in refined `Content` nodes, while selected TEI/XML encoding information is transformed into RAMEN `Annotation` nodes.
 
-This follows the same general principle as TEI/XML standoff markup and annotations ([cf. Palladino et al. 2020](https://ceur-ws.org/Vol-3110/paper8.pdf)): textual content and annotation information are kept separate, while range information such as `startIndex` and `endIndex` connects each annotation to the relevant part of the text. TEI can serve as one possible vocabulary for these annotations, but other vocabularies or project-specific annotation types can also be used.
+<Figure
+  id="fig:content-tei-convert"
+  number="6"
+  src="/images/concepts/content-tei-convert.png"
+  alt="Transforming TEI/XML encoding into RAMEN content, annotation, and entity nodes"
+  caption="Transforming TEI/XML encoding into RAMEN content, annotation, and entity nodes"
+  width={560}
+/>
+
+:::info
+This follows the same general principle as _TEI/XML standoff markup and annotations_ ([cf. Palladino et al. 2020](https://ceur-ws.org/Vol-3110/paper8.pdf)): textual content and annotation information are kept separate, while range information such as `startIndex` and `endIndex` connects each annotation to the relevant part of the text. **[TEI](https://www.tei-c.org/) can serve as one possible vocabulary** for these annotations, but other vocabularies or project-specific annotation types can also be used.
+:::
 
 Alternatively, a refined `Content` node may reference an existing TEI/XML document as an external resource, if the encoded document should remain the primary representation.
 
-### Graph-Serialised Text with ATAG
+#### Graph-Serialised Text with ATAG
 
-Some workflows need more granular text structures than a single `text` attribute can provide. In such cases, RAMEN can be combined with a graph-based text serialisation such as _Applied Text as Graph_ (ATAG) ([cf. Kuczera 2024](https://doi.org/10.4000/14vyl)). ATAG can represent a text as a chain of character or token nodes, so that very small textual units become directly addressable for editing, annotation, citation, or computational processing.
+Some workflows need more granular text structures than a single `text` attribute can provide. In such cases, RAMEN can be combined with a graph-based text serialisation such as _Applied Text as Graph_ (ATAG) ([cf. Kuczera 2024](https://doi.org/10.4000/14vyl)). ATAG can represent a text as a **chain of character or token nodes**, so that very small textual units become **directly addressable** for editing, annotation, citation, or computational processing.
 
-In this pattern, the RAMEN `Content` node remains the **content-bearing entry point** for the project model. The ATAG structure provides a more detailed internal representation of the text. This allows tools to rely on the RAMEN base type while still using a more granular serialisation where the workflow requires it.
+<Figure
+  id="fig:content-atag"
+  number="7"
+  src="/images/concepts/content-atag.png"
+  alt="ATAG-style graph serialisation connected to a RAMEN content annotation"
+  caption="ATAG-style graph serialisation connected to a RAMEN content annotation"
+  width={450}
+/>
+
+In this pattern, the RAMEN `Content` node remains the **content-bearing entry point** for the project model. The ATAG structure provides a more detailed internal representation of the text. Relations such as `STANDOFF_START` and `STANDOFF_END` belong to this granular text serialisation, while RAMEN tools can still rely on the `Content` node and `HAS_ANNOTATION` relation at the model level.
