@@ -1,5 +1,86 @@
 ---
 title: Modelling Knowledge
-description: Knowledge Modelling
+description: How entities, annotations, and connections make editorial knowledge explicit in RAMEN.
 slug: /concepts/knowledge
 ---
+
+import Figure from "@site/src/components/Figure";
+
+# Modelling Knowledge
+
+Knowledge in RAMEN describes how editorial information is **made explicit** through annotations and connections. An `Annotation` node contributes to the knowledge structure of the edition whenever it describes, classifies, interprets, or links editorial objects.
+
+RAMEN does not treat knowledge as a **separate layer detached from the edition**. Knowledge is built through explicit connections between annotations, entities, content, collections, and other annotations. Because RAMEN is close to graph-based knowledge modelling, entities can **also be connected** to external authority records, knowledge graphs, datasets, or other resources.
+
+A central part of this knowledge concerns **identifiable objects** of scholarly interest, such as persons, places, works, institutions, events, or concepts. In RAMEN, these objects can be represented as `Entity` nodes.
+
+<Figure
+  id="fig:knowledge"
+  number="1"
+  src="/images/concepts/part-knowledge.png"
+  alt="Knowledge modelling with Annotation, Content, Collection, Entity, HAS_ANNOTATION, and REFERS_TO"
+  caption="Knowledge modelling with Annotation, Content, Collection, Entity, HAS_ANNOTATION, and REFERS_TO"
+  width={640}
+/>
+
+## Entity Nodes
+
+`Entity` nodes represent identifiable objects of scholarly interest. A refined `Entity` node may, for example, be called `Person`, `Place`, `Work`, `Institution`, `Event`, or `Concept`, depending on the project model.
+
+Entities can carry attributes, such as names, dates, descriptions, external authority references, or links to knowledge graphs and other resources. They can also be annotated through `HAS_ANNOTATION`, which makes it possible to add editorial statements about an entity without changing the entity itself.
+
+## The `REFERS_TO` Relation
+
+`REFERS_TO` is used when an `Annotation` points to the editorial object that its statement is about. This target may be an `Entity`, but it may also be a `Content` node or a `Collection`.
+
+`Annotation` nodes are one of the main mechanisms for making **editorial knowledge explicit**. Through `HAS_ANNOTATION`, an annotation is attached to the object being annotated; through `REFERS_TO`, it connects this statement to the object it refers to.
+
+This makes it possible to model knowledge as **explicit editorial statements** rather than as direct, unqualified links between objects.
+
+:::info
+`Annotation` nodes themselves **can also be annotated** through `HAS_ANNOTATION`. This makes it possible to qualify or comment on statements, for example by adding information about certainty, source, responsibility or interpretation, **without** making annotations targets of `REFERS_TO`.
+:::
+
+## Connecting Authority Data
+
+External authority providers such as the [GND](https://gnd.network/) or [Wikidata](https://www.wikidata.org/) can be connected to RAMEN entities _implicitly_ by referencing identifiers or URIs, for example through entity attributes or annotations.
+
+For workflows that connect several databases while keeping their data holdings separate, see [NAKAR](https://go.thm.de/nakar).
+
+## Examples of Modelling Knowledge
+
+The following examples show how annotations, entities, and references to other editorial objects can be used to model knowledge.
+
+:::note
+The examples below describe **knowledge-modelling patterns**. They are **not intended as best practices**, but illustrate possible modelling choices that may differ between projects and tools.
+:::
+
+### Named Entity Connections
+
+A common knowledge-modelling pattern is to connect a text passage to an identifiable entity. A refined `Content` node, such as `Text`, can `HAS_ANNOTATION` an `Annotation` with `type: "persName"`. This annotation can then `REFERS_TO` a `Person` entity.
+
+In this pattern, the textual occurrence and the identified person **remain separate**. The text contains the written form, the annotation describes the occurrence, and the entity represents the person as an **independent knowledge object**.
+
+<Figure
+  id="fig:knowledge-named-entity"
+  number="2"
+  src="/images/concepts/example-content-refers-entity.png"
+  alt="Named entity connection from a content annotation to a Person entity"
+  caption="Named entity connection from a content annotation to a Person entity"
+  width={560}
+/>
+
+### Entity Connections
+
+Knowledge can also be modelled between entities. For example, a `Person` entity may `HAS_ANNOTATION` a refined `Annotation` node such as `Kinship`, and this annotation may `REFERS_TO` another `Person` entity.
+
+This makes the connection itself **explicit**, editable, and annotatable. The statement is not only a direct edge between two persons; it can carry its own type, attributes, sources, uncertainty, commentary, or further annotations if the project model requires it. In this example, `Kinship` is a project-specific refinement of `Annotation`, while `type: "spouseOf"` describes the kind of kinship.
+
+<Figure
+  id="fig:knowledge-entity-connection"
+  number="3"
+  src="/images/concepts/example-entity-refers-entity.png"
+  alt="Entity connection modelled through a refined Kinship annotation"
+  caption="Entity connection modelled through a refined Kinship annotation"
+  width={560}
+/>
