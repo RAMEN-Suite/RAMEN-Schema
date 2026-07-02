@@ -19,7 +19,7 @@ _Serialised material_ means material that is stored or referenced in a **concret
 <Figure
   id="fig:content"
   number="1"
-  src="/images/concepts/content.png"
+  src="/images/concepts/part-content.png"
   alt="Content modelling with Content and Annotation nodes"
   caption="Content modelling with Content and Annotation nodes"
   width={640}
@@ -66,9 +66,9 @@ A project may capture textual material in a refined `Content` node such as `Text
 These annotations can describe the whole content node or specific text ranges. For range-based annotations, attributes such as `startIndex` and `endIndex` can identify the relevant part of the text. This makes it possible to attach paragraphs, headings, quotations, names, corrections, comments, or other editorial information to the same textual content through `HAS_ANNOTATION`.
 
 <Figure
-  id="fig:content-plain-text"
+  id="fig:capturing-text"
   number="2"
-  src="/images/concepts/content-plain-text.png"
+  src="/images/concepts/example-capturing-text.png"
   alt="Plain text content with a range-based annotation"
   caption="Plain text content with a range-based annotation"
   width={720}
@@ -83,9 +83,9 @@ Annotations can then describe the whole image or a specific region of it. Instea
 As with text, the `Image` node carries or references the material, while `Annotation` nodes add structure, classification, interpretation, or links to other editorial objects.
 
 <Figure
-  id="fig:content-image"
+  id="fig:capturing-image"
   number="3"
-  src="/images/concepts/content-image.png"
+  src="/images/concepts/example-capturing-image.png"
   alt="Image content with a region-based annotation"
   caption="Image content with a region-based annotation"
   width={720}
@@ -100,9 +100,9 @@ This section shows how annotations attached to content can be typed and linked t
 Annotations attached to content can often remain general `Annotation` nodes. Their specific meaning can be expressed through the `type` attribute. For example, a TEI [persName](https://www.tei-c.org/release/doc/tei-p5-doc/de/html/ref-persName.html) annotation can be represented as an `Annotation` with `type: "persName"` attached to a content-bearing node.
 
 <Figure
-  id="fig:content-typed-annotation"
+  id="fig:typed-annotation"
   number="4"
-  src="/images/concepts/content-typed-annotation.png"
+  src="/images/concepts/example-typed-annotation.png"
   alt="Content annotation typed with a type attribute"
   caption="Content annotation typed with a type attribute"
   width={800}
@@ -121,9 +121,9 @@ Annotations on content can also create connections to other editorial objects. A
 In this pattern, the content, the annotation, and the entity remain separate. The `Text` node carries the written form, the annotation marks and classifies the occurrence, and the `Person` entity represents the identified person. This allows the same content to remain readable as text while its editorial interpretation becomes explicit in the graph.
 
 <Figure
-  id="fig:content-refers-entity"
+  id="fig:refers-entity"
   number="5"
-  src="/images/concepts/content-refers-entity.png"
+  src="/images/concepts/example-content-refers-entity.png"
   alt="Content annotation referring to a Person entity"
   caption="Content annotation referring to a Person entity"
   width={560}
@@ -138,9 +138,9 @@ This section shows how existing encodings or more granular serialisations can be
 A project may capture textual content by transforming existing [TEI/XML](https://www.tei-c.org/) into a RAMEN-compatible graph structure. In this pattern, the plain text is stored in refined `Content` nodes, while selected TEI/XML encoding information is transformed into RAMEN `Annotation` nodes.
 
 <Figure
-  id="fig:content-tei-convert"
+  id="fig:tei-convert"
   number="6"
-  src="/images/concepts/content-tei-convert.png"
+  src="/images/concepts/example-tei-content.png"
   alt="Transforming TEI/XML encoding into RAMEN content, annotation, and entity nodes"
   caption="Transforming TEI/XML encoding into RAMEN content, annotation, and entity nodes"
   width={560}
@@ -157,9 +157,9 @@ Alternatively, a refined `Content` node may reference an existing TEI/XML docume
 Some workflows need more granular text structures than a single `text` attribute can provide. In such cases, RAMEN can be combined with a graph-based text serialisation such as _Applied Text as Graph_ (ATAG) ([cf. Kuczera 2024](https://doi.org/10.4000/14vyl)). ATAG can represent a text as a **chain of character or token nodes**, so that very small textual units become **directly addressable** for editing, annotation, citation, or computational processing.
 
 <Figure
-  id="fig:content-atag"
+  id="fig:atag"
   number="7"
-  src="/images/concepts/content-atag.png"
+  src="/images/concepts/example-atag.png"
   alt="ATAG-style graph serialisation connected to a RAMEN content annotation"
   caption="ATAG-style graph serialisation connected to a RAMEN content annotation"
   width={450}
