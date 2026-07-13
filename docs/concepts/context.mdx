@@ -45,11 +45,11 @@ This allows projects to model contextual structures with clear rules. A project 
 The following examples show how `Collection` and `PART_OF` can model different forms of editorial organisation.
 
 :::note
-The following examples are **not intended as best practices**. They illustrate possible ways of modelling structures. Project models depend on material, research questions, workflows, and requirements, and they usually evolve as a project develops.
+The following examples are **not intended as best practices**. They illustrate possible ways of modelling structures. Project models depend on material, research questions, workflows, and requirements, and they evolve as a project develops.
 :::
 
 :::info
-The examples below describe **model concepts**, not individual data records. A project model may define a collection type such as `Corpus`; the actual data may then contain a specific corpus titled _Correspondence between Person A and Person B_.
+The examples below describe **model concepts**, not individual data records. A project model may define a collection type such as `Corpus`; the actual data may then contain a specific corpus titled _Correspondence between Person A and B_.
 
 `Corpus` is the model type, while the titled corpus is one concrete instance of that type.
 :::
@@ -96,13 +96,13 @@ The `Regesta` can then be related to larger `Collection` nodes, such as a `Volum
 
 ### Books of Fortune
 
-Books of fortune are **non-linear and interactive** texts. Instead of being read from beginning to end, they guide readers through questions, randomising mechanisms, thematic sections, authorities, and possible reading or game paths ([cf. Cugliana et al. 2024](https://doi.org/10.17175/2024_005)).
+Books of fortune are **non-linear and interactive** texts. Instead of being read from beginning to end, they guide readers through questions, randomising mechanisms, thematic sections, authorities, and possible game paths ([cf. Cugliana et al. 2024](https://doi.org/10.17175/2024_005)).
 
 A project model may distinguish here between different refined `Collection` nodes. `Concept` nodes can describe larger structural components of the text, `Version` and `Witness` nodes the transmission context, and `Section` nodes the internal organisation of a witness. `Text` nodes are refined `Content` nodes that carry the actual textual content.
 
 A `GamePath` could be modelled as a separate `Collection`. It brings together the text parts that belong to one possible reading path through the book, for example from a question to an answer.
 
-This makes it possible to describe the **same material in two ways**: as part of a witness and as part of an interactive reading path.
+This makes it possible to describe the **same material in two ways**: as part of a witness and as part of an interactive path.
 
 <Figure
   id="fig:sortes"

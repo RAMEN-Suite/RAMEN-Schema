@@ -29,12 +29,12 @@ _Serialised material_ means material that is stored or referenced in a **concret
 
 `Content` nodes represent serialised or addressable material. A refined `Content` node may, for example, be called `Text` or `Image`, but RAMEN does not bind specific media types to these labels. What matters is that the node remains recognisable as a `Content` node, so tools can rely on the RAMEN base type while projects can define more specific content-bearing roles.
 
-The attributes used to capture material depend on the content type and the used [tools](/tools). For textual content, a project model may define a `text` attribute. For image content, it may define a `url` attribute. Other media or data types may use different attributes.
+The attributes used to capture material depend on the content type and the used [tools](/tools). For textual content, a project model may define a `text` attribute. For image content, a `url` attribute. Other media or data types may use different attributes.
 
 :::warning
-A project model _should_ define the expected attributes for its content types in advance. Different tools **may require different attributes** depending on the workflow; these requirements should therefore be specified **before data capture begins**.
+A project model _should_ define the expected attributes for its content types in advance. Different tools **may require different attributes** depending on the workflow; these requirements should be specified **before data capture begins**.
 
-For textual content, a tool may expect a `text` attribute and use `startIndex` and `endIndex` for range-based annotations. For image content, a tool may expect a `url` attribute and use coordinates or [IIIF](https://iiif.io/)-compatible regions for image annotations.
+For textual content, a tool may expect a `text` attribute and use `startIndex` and `endIndex` for range-based annotations. For image content, a tool may expect a `url` attribute and use coordinates or [IIIF](https://iiif.io/)-regions for image annotations.
 :::
 
 ## Content and Annotations
@@ -111,7 +111,7 @@ Annotations attached to content can often remain general `Annotation` nodes. The
 Depending on the project model and tool support, annotation types may also define different expected properties, validation rules, or editing forms. A `persName` annotation may therefore require different information than a `commentary` annotation, even if both remain general `Annotation` nodes.
 
 :::tip
-Refined annotation nodes are useful when an annotation kind **should become a distinct project-specific concept** in the model. In many cases, however, `type`-based annotations are sufficient and keep the annotation model _simple_.
+Refined annotation nodes are useful when an annotation kind **should become a distinct project-specific concept** in the model (e.g., using `Annotation` directly while additionally refining it into `TextAnnotation` and `ImageAnnotation`). In many cases, however, `type`-based annotations are sufficient and avoid unnecessary refinement of the `Annotation` node.
 :::
 
 #### Linking Content Annotations
@@ -165,4 +165,4 @@ Some workflows need more granular text structures than a single `text` attribute
   width={450}
 />
 
-In this pattern, the RAMEN `Content` node remains the **content-bearing entry point** for the project model. The ATAG structure provides a more detailed internal representation of the text. Relations such as `STANDOFF_START` and `STANDOFF_END` belong to this granular text serialisation, while RAMEN tools can still rely on the `Content` node and `HAS_ANNOTATION` relation at the model level.
+In this pattern, the RAMEN `Content` node remains the **content-bearing entry point** for the project model. The ATAG structure provides a more detailed internal representation of the text. Relations such as `STANDOFF_START` and `STANDOFF_END` belong to this granular serialisation, while RAMEN tools can rely on the `Content` node and `HAS_ANNOTATION` relation at the model level.

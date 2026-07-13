@@ -35,7 +35,7 @@ Entities can carry attributes, such as names, dates, descriptions, external auth
 
 `Annotation` nodes are one of the main mechanisms for making **editorial knowledge explicit**. Through `HAS_ANNOTATION`, an annotation is attached to the object being annotated; through `REFERS_TO`, it connects this statement to the object it refers to.
 
-This makes it possible to model knowledge as **explicit editorial statements** rather than as direct, unqualified links between objects.
+This makes it possible to model knowledge as **explicit editorial statements** rather than as direct, unqualified links.
 
 :::info
 `Annotation` nodes themselves **can also be annotated** through `HAS_ANNOTATION`. This makes it possible to qualify or comment on statements, for example by adding information about certainty, source, responsibility or interpretation, **without** making annotations targets of `REFERS_TO`.
@@ -49,7 +49,7 @@ For workflows that connect several databases while keeping their data holdings s
 
 ## Examples of Modelling Knowledge
 
-The following examples show how annotations, entities, and references to other editorial objects can be used to model knowledge.
+The following examples show how annotations, entities, and references to other editorial objects can be used.
 
 :::note
 The examples below describe **knowledge-modelling patterns**. They are **not intended as best practices**, but illustrate possible modelling choices that may differ between projects and tools.
